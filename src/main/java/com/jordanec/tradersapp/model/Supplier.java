@@ -1,7 +1,6 @@
 package com.jordanec.tradersapp.model;
 
 import java.util.Collection;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,11 +10,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
@@ -29,9 +25,10 @@ public class Supplier implements java.io.Serializable{
 	/**
 	 * 
 	 */
+	@JsonIgnore
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
 	String name;
 	String company;
@@ -119,6 +116,4 @@ public class Supplier implements java.io.Serializable{
 	public String toString() {
 		return " {\"id\":\"" + id + "\",\"name\":\"" + name + "\"}";
 	}
-	
-	
 }

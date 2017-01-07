@@ -6,3 +6,4 @@
 *.iml
 *.classpath
 *.project
+/.apt_generated/

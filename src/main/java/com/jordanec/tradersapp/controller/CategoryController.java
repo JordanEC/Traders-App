@@ -14,7 +14,6 @@ import com.jordanec.tradersapp.model.Category;
 import com.jordanec.tradersapp.repository.CategoryRepository;
 
 
-
 @RestController
 @RequestMapping("api/v1/")
 public class CategoryController {

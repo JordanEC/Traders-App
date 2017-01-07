@@ -1,9 +1,3 @@
-/*H2*/
-INSERT INTO SUPPLIER VALUES(1,'address','company','name',88997744),(2,'address','company','name',88997744),(3,'address','company','name',88997744);
-INSERT INTO CATEGORY VALUES(1,'description','name'),(2,'description','name'),(3,'description','name');
-INSERT INTO PRODUCT VALUES(1,'description1','name1',250.25,40,1),(2,'description2','name2',250.25,40,2),(3,'description3','name3',250.25,40,3);
-INSERT INTO PRODUCT_SUPPLIERS  VALUES(1,1),(2,2),(3,3),(1,2),(2,1),(3,1);
-
 /*POSTGRES*/
 INSERT INTO supplier(id, address, company, name, phone) VALUES 
 (1,'San Rafael Arriba','AMSO','Juan Vargas',88997744),

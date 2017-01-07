@@ -41,7 +41,7 @@ import com.jordanec.tradersapp.repository.SupplierRepository;
 @SpringApplicationConfiguration(App.class)
 public class SupplierTest {
 	@InjectMocks
-	private SupplierController sc;
+	private SupplierController supplierController;
 
 	@Autowired
 	private SupplierRepository supplierRepository;
@@ -51,26 +51,28 @@ public class SupplierTest {
         MockitoAnnotations.initMocks(this);
     }
     
-	//@Test
+	@Test
 	public void testSupplierCreate() {
 		Supplier new_supplier = new Supplier();
 		Supplier ret_new_supplier;
-		new_supplier.setId(1l);
+		//new_supplier.setId((long)5);
 		new_supplier.setName("name");
 		new_supplier.setAddress("address");
 		new_supplier.setCompany("company");
 		new_supplier.setPhone(88997744);
 
-		when(ret_new_supplier=supplierRepository.save(new_supplier)).thenReturn(new_supplier);
-		Supplier wreck = sc.get(2L);
+		//when(ret_new_supplier=supplierRepository.save(new_supplier)).thenReturn(new_supplier);
+		ret_new_supplier=supplierRepository.save(new_supplier);
+		Supplier supplier = supplierRepository.findOne(ret_new_supplier.getId());
+		//Supplier wreck = supplierController.get(ret_new_supplier.getId());
 		
-		verify(supplierRepository).findOne(2l);
+		//verify(supplierRepository).findOne(ret_new_supplier.getId());
 		
-		assertThat(wreck, is(ret_new_supplier));
-		System.out.println(wreck);
+		assertThat(supplier, is(ret_new_supplier));
+		System.out.println(supplier);
 	}
 	
-	//@Test
+	@Test
 	public void testSupplierList() {
 		Collection<Supplier> suppliers;
 		Collection<Product> products;

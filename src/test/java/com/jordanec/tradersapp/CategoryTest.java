@@ -41,7 +41,7 @@ import com.jordanec.tradersapp.repository.CategoryRepository;
 @SpringApplicationConfiguration(App.class)
 public class CategoryTest {
 	@InjectMocks
-	private CategoryController sc;
+	private CategoryController categoryController;
 
 	@Autowired
 	private CategoryRepository categoryRepository;
@@ -51,7 +51,7 @@ public class CategoryTest {
         MockitoAnnotations.initMocks(this);
     }
     
-	//@Test
+	@Test
 	public void testCategoryCreate() {
 		Category new_category = new Category();
 		Category ret_new_category;
@@ -60,7 +60,7 @@ public class CategoryTest {
 
 		when(ret_new_category=categoryRepository.save(new_category)).thenReturn(new_category);
 		
-		Category category = sc.get(2L);
+		Category category = categoryController.get(2L);
 
 		verify(categoryRepository).findOne(2l);		
 
