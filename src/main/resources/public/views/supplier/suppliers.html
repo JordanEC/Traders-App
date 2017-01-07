@@ -1,0 +1,19 @@
+<div class="container pad-top">
+  <a ui-sref="newSupplier" class="btn-primary btn-lg nodecoration">Add New Supplier</a>
+  <table class="table entitytable">
+      <tr>
+          <td><h3>All Suppliers</h3></td>
+          <td></td>
+      </tr>
+      <tr ng-repeat="supplier in suppliers">
+          <td>{{supplier.name}}</td>
+          <td>{{supplier.company}}</td>
+          <td>{{supplier.address}}</td>
+          <td>{{supplier.phone}}</td>
+          <td>
+              <a class="btn btn-primary" ui-sref="viewSupplier({id:supplier.id})">View</a>
+              <a class="btn btn-danger"  ng-click="deleteSupplier(supplier)">Delete</a>
+          </td>
+      </tr>
+  </table>
+</div>

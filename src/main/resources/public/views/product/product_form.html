@@ -1,0 +1,51 @@
+<div class="form-group">
+    <label for="name" class="col-sm-2 control-label">Name</label>
+    <div class="col-sm-10">
+        <input type="text" ng-model="product.name" class="form-control" id="name" placeholder="Product Name"/>
+    </div>
+</div>
+<div class="form-group">
+    <label for="description" class="col-sm-2 control-label">Description</label>
+    <div class="col-sm-10">
+        <input type="text" ng-model="product.description" class="form-control" id="description" placeholder="Product Description"/>
+    </div>
+</div>
+<div class="form-group">
+    <label for="unitPrice" class="col-sm-2 control-label">Unit Price</label>
+    <div class="col-sm-10">
+        <input type="text" ng-model="product.unitPrice" class="form-control" id="unitPrice" placeholder="Product Unit Price"/>
+    </div>
+</div>
+<div class="form-group">
+    <label for="unitsInStock" class="col-sm-2 control-label">Units In Stock</label>
+    <div class="col-sm-10">
+        <input type="text" ng-model="product.unitsInStock" class="form-control" id="unitsInStock" placeholder="Units In Stock"/>
+    </div>
+</div>
+<!-- <div class="form-group">
+    <label for="category" class="col-sm-2 control-label">Category</label>
+    <div class="col-sm-10">
+        <input type="text" ng-model="product.category" class="form-control" id="category" placeholder="Product Category"/>
+    </div>
+</div> -->
+<div class="form-group">
+	<label for="prod-cat" class="col-sm-2 control-label">Product category</label>
+	<div class="col-sm-10 dropdown">
+		<select class="form-control" id="prod-cat" ng-model="product.category" 
+			ng-options="category as category.name for category in categories track by category.id">
+		</select>
+	</div>
+</div>
+<div class="form-group">
+	<label for="sups" class="col-sm-2 control-label">Product suppliers</label>
+	<multiple-autocomplete class="col-sm-10" id="sups" ng-model="product.suppliers"
+	     object-property="name"
+	     suggestions-arr="suppliers">
+	</multiple-autocomplete>
+</div>
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <input type="submit" class="btn btn-primary" value="Save"/>
+    </div>
+</div>

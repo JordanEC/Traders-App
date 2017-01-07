@@ -1,0 +1,8 @@
+/bin/
+/target/
+/src/main/resources/public/bower_components/
+/.idea/
+/.settings/
+*.iml
+*.classpath
+*.project

@@ -1,0 +1,19 @@
+<div class="container pad-top">
+  <table class="table entitytable">
+      <tr>
+          <td><h3>Details for {{category.name}}</h3></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>Name</td>
+          <td>{{category.name}}</td>
+      </tr>
+      <tr>
+          <td>Description</td>
+          <td>{{category.description}}</td>
+      </tr>
+  </table>
+  <div class="col-xs-offset-5 col-xs-2">
+      <a class="btn btn-primary" ui-sref="editCategory({id:category.id})">Edit</a>
+  </div>
+</div>

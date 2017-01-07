@@ -1,0 +1,27 @@
+<div class="container pad-top">
+  <table class="table entitytable">
+      <tr>
+          <td><h3>Details for {{supplier.name}}</h3></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>Name</td>
+          <td>{{supplier.name}}</td>
+      </tr>
+      <tr>
+          <td>Company</td>
+          <td>{{supplier.company}}</td>
+      </tr>
+      <tr>
+          <td>Address</td>
+          <td>{{supplier.address}}</td>
+      </tr>
+      <tr>
+          <td>Phone</td>
+          <td>{{supplier.phone}}</td>
+      </tr>
+  </table>
+  <div class="col-xs-offset-5 col-xs-2">
+      <a class="btn btn-primary" ui-sref="editSupplier({id:supplier.id})">Edit</a>
+  </div>
+</div>
