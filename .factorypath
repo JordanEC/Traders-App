@@ -60,6 +60,7 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-oxm/4.3.5.RELEASE/spring-oxm-4.3.5.RELEASE.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/ws/spring-ws-core/2.3.1.RELEASE/spring-ws-core-2.3.1.RELEASE.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/ws/spring-xml/2.3.1.RELEASE/spring-xml-2.3.1.RELEASE.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/postgresql/postgresql/9.4.1212.jre7/postgresql-9.4.1212.jre7.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/boot/spring-boot-starter-test/1.4.3.RELEASE/spring-boot-starter-test-1.4.3.RELEASE.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/boot/spring-boot-test/1.4.3.RELEASE/spring-boot-test-1.4.3.RELEASE.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/boot/spring-boot-test-autoconfigure/1.4.3.RELEASE/spring-boot-test-autoconfigure-1.4.3.RELEASE.jar" enabled="true" runInBatchMode="false"/>
