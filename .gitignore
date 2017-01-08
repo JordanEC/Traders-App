@@ -4,6 +4,4 @@
 /.idea/
 /.settings/
 *.iml
-*.classpath
-*.project
 /.apt_generated/
