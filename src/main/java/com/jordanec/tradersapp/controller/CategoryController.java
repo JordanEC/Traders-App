@@ -15,7 +15,7 @@ import com.jordanec.tradersapp.repository.CategoryRepository;
 
 
 @RestController
-@RequestMapping("api/v1/")
+@RequestMapping("api/v2/")
 public class CategoryController {
 
     @Autowired

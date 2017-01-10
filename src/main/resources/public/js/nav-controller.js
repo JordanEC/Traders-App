@@ -21,6 +21,10 @@ angular.module('navController', [])
 			{
 				name: 'Products',
 				url: '#/products'
+			},
+			{
+				name: 'Login',
+				url: '#/login'
 			}
 		]
 	});

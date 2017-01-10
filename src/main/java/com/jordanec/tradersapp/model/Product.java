@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,42 +19,35 @@ import com.jordanec.tradersapp.model.Supplier;
  *
  */
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id",scope=Product.class)
-public class Product implements java.io.Serializable{
-	/**
-	 * 
-	 */
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id",scope=Product.class)
+@Table(name="Product", catalog="tradersappdb_v2")
+public class Product extends BaseModel implements java.io.Serializable{
 	@JsonIgnore
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id;
-	String name;
-	String description;
-	Double unitPrice;
-	Integer unitsInStock;
+	private static final long serialVersionUID = 2723572977273902717L;
+	private String name;
+	private String description;
+	private Double unitPrice;
+	private Integer unitsInStock;
 	@ManyToOne
 	//@JsonManagedReference
-	Category category;
+	private Category category;
 	@ManyToMany(fetch=FetchType.EAGER)
 	//@JsonManagedReference
-	Collection<Supplier> suppliers;
+	private Collection<Supplier> suppliers;
 	
 	public Product() { }
 	
-	public Product(Long id, String name, String description, Double unitPrice, Integer unitsInStock) {
+	public Product(String name, String description, Double unitPrice, Integer unitsInStock) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.unitPrice = unitPrice;
 		this.unitsInStock = unitsInStock;
 	}
 
-	public Product(Long id, String name, String description, Double unitPrice, Integer unitsInStock,
+	public Product(String name, String description, Double unitPrice, Integer unitsInStock,
 			Category category) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.unitPrice = unitPrice;
@@ -61,10 +55,9 @@ public class Product implements java.io.Serializable{
 		this.category = category;
 	}
 
-	public Product(Long id, String name, String description, Double unitPrice, Integer unitsInStock, Category category,
+	public Product(String name, String description, Double unitPrice, Integer unitsInStock, Category category,
 			Collection<Supplier> suppliers) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.unitPrice = unitPrice;
@@ -73,12 +66,6 @@ public class Product implements java.io.Serializable{
 		this.suppliers = suppliers;
 	}
 
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 	public String getName() {
 		return name;
 	}

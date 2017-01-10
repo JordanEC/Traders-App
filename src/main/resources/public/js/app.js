@@ -34,7 +34,17 @@
 		var viewsPrefix = 'views/';
 
 		// For any unmatched url, send to /
-		$urlRouterProvider.otherwise("/")
+		$urlRouterProvider
+		/*.when('/login', {					//
+			templateUrl : viewsPrefix + 'login.html',
+			controller : 'navigation'
+		})		*/							//
+		//.when(viewsPrefix + '/login', ['$match', '$stateParams', function ($match, $stateParams) {
+		    /*if ($state.$current.navigable != state || !equalForKeys($match, $stateParams)) {
+		        $state.transitionTo(state, $match, false);
+		    }
+		}]);*/
+		.otherwise("/")
 
 		$stateProvider
 			// you can set this to no template if you just want to use the html in the page
@@ -44,6 +54,11 @@
 				data: {
 					pageTitle: 'Home'
 				}
+			})
+			.state('login', {
+				url: "/login",
+				templateUrl: viewsPrefix + "login.html",
+				controller:'Navigation'
 			})
 			.state('suppliers',{
 		        url:'/suppliers',
@@ -64,10 +79,7 @@
 			        url:'/suppliers/:id/edit',
 			        templateUrl: viewsPrefix + 'supplier/supplier-edit.html',
 			        controller:'SupplierEditController'
-		    })
-	
-		    
-		    
+		    })	    
 			.state('categories',{
 		        url:'/categories',
 		        templateUrl: viewsPrefix + 'category/categories.html',

@@ -16,7 +16,7 @@ import com.jordanec.tradersapp.repository.ProductRepository;
 
 
 @RestController
-@RequestMapping("api/v1/")
+@RequestMapping("api/v2/")
 public class ProductController {
 
     @Autowired

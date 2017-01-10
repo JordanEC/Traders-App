@@ -1,4 +1,53 @@
 angular.module('app.controllers', [])
+.controller('Navigation', function($rootScope, $scope, $http, $location) {
+	$scope.login = function(){
+		$http.post('/login', $scope.authenticationUser).
+	    success(function(data, status, headers, config) {
+	        // this callback will be called asynchronously
+	        // when the response is available
+	        console.log(data);
+	      }).
+	      error(function(data, status, headers, config) {
+	        // called asynchronously if an error occurs
+	        // or server returns response with an error status.
+	      });
+	};
+	
+	/*
+		  var authenticate = function(credentials, callback) {
+
+		  var headers = credentials ? {authorization : "Basic "
+		        + btoa(credentials.username + ":" + credentials.password)
+		    } : {};
+			  var headers = {credentials.email + credentials.password};
+		    $http.get('user', {headers : headers}).success(function(data) {
+		      if (data.email) {
+		        $rootScope.authenticated = true;
+		      } else {
+		        $rootScope.authenticated = false;
+		      }
+		      callback && callback();
+		    }).error(function() {
+		      $rootScope.authenticated = false;
+		      callback && callback();
+		    });
+
+		  }
+
+		  authenticate();
+		  $scope.credentials = {};
+		  $scope.login = function() {
+		      authenticate($scope.credentials, function() {
+		        if ($rootScope.authenticated) {
+		          $location.path("/");
+		          $scope.error = false;
+		        } else {
+		          $location.path("/login");
+		          $scope.error = true;
+		        }
+		      });
+		  };*/
+})
 .controller('SupplierListController', function($scope, $state, popupService, $window, Supplier) {
 	$scope.suppliers = Supplier.query(); //fetch all suppliers. Issues a GET to /api/vi/suppliers
 	$scope.deleteSupplier = function(supplier) { // Delete a Supplier. Issues a DELETE to /api/v1/suppliers/:id

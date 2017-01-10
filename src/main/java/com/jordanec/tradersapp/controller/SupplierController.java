@@ -16,7 +16,7 @@ import com.jordanec.tradersapp.repository.SupplierRepository;
 
 
 @RestController
-@RequestMapping("api/v1/")
+@RequestMapping("api/v2/")
 public class SupplierController {
 
     @Autowired
