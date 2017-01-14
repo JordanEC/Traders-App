@@ -1,5 +1,5 @@
 angular.module('app.services', [])
-.factory('LoginService', ['$http', 'Base64Service', function($http, Base64Service) {
+/*.factory('LoginService', ['$http', 'Base64Service', function($http, Base64Service) {
 //	return $resource('/api/v2/users', { email: '@email', password: '@password' }, {update: {method: 'PUT'}});
 	return {
         login: function(credentials) {
@@ -20,7 +20,7 @@ angular.module('app.services', [])
             return $http.get('/api/auth/logout')
         }
     }
-}])
+}])*/
 .factory('Base64Service', function() {
     var keyStr = 'ABCDEFGHIJKLMNOP' + 'QRSTUVWXYZabcdef' + 'ghijklmnopqrstuv' + 'wxyz0123456789+/' + '=';
     return {
@@ -97,7 +97,7 @@ angular.module('app.services', [])
     };
 })
 
-.factory('Supplier', function($resource,Base64Service) {
+/*.factory('Supplier', function($resource,Base64Service) {
 	//if (credentials) {
     	//var auth = 'Basic ' + Base64Service.encode(credentials.username + ':' + credentials.password);
     //}
@@ -113,8 +113,8 @@ angular.module('app.services', [])
 		}*/	
 /*		update: {
 			method: 'PUT'}*/
-	});
-})
+//	});
+//})
 .factory('Category', function($resource) {
 	return $resource('/api/v2/categories/:id', { id: '@id' }, {update: {method: 'PUT'}});
 })

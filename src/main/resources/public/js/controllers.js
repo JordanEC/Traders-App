@@ -1,6 +1,44 @@
 angular.module('app.controllers', [])
-.controller('LoginCtrl', ['$scope', '$rootScope', '$location', 'LoginService', 'AlertService', function($scope, $rootScope, $location, LoginService, AlertService) {
+.controller('LoginCtrl',function($rootScope, $http, $location) {
+	var self = this
+	self.called = false;
+	var authenticate = function(credentials, callback) {
+		var headers = credentials ? {authorization : "Basic "
+			+ btoa(credentials.username + ":" + credentials.password)
+			} : {};
 
+		$http.post('login', {headers : headers}).then(function(response) {
+			console.log(response);
+			if (response.data.name) {
+				$rootScope.authenticated = true;
+			} else {
+				$rootScope.authenticated = false;
+			}
+			callback && callback();
+		}, function() {
+			$rootScope.authenticated = false;
+			callback && callback();
+			}
+		);
+	
+		}
+
+		  authenticate();
+		  self.credentials = {};
+		  self.login = function() {
+			  self.called = true;
+		      authenticate(self.credentials, function() {
+		        if ($rootScope.authenticated) {
+		          $location.path("/");
+		          self.error = false;
+		        } else {
+		          $location.path("/login");
+		          self.error = true;
+		        }
+		      });
+		  };
+		})
+/*.controller('LoginCtrl', ['$scope', '$rootScope', '$location', 'LoginService', 'AlertService', function($scope, $rootScope, $location, LoginService, AlertService) {
     $scope.credentials = {
         username: '',
         password: ''
@@ -20,7 +58,9 @@ angular.module('app.controllers', [])
             });
     }
 
-}])
+}])*/
+	
+	////////
 /*.controller('Navigation', function($rootScope, $scope, $http, $location) {
 	$scope.login = function(){
 		$http.post('/login', $scope.authenticationUser).

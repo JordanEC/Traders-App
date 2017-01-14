@@ -24,7 +24,7 @@ angular.module('navController', [])
 			},
 			{
 				name: 'Login',
-				url: '/login'		//#/login
+				url: '#/login'		//#/login
 			},
 			{
 				name: 'Logout',

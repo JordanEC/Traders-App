@@ -24,7 +24,7 @@
 		}
 	}
 
-	app.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
+	app.config(function($stateProvider, $urlRouterProvider, $controllerProvider, $httpProvider){
 		var origController = app.controller
 		app.controller = function (name, constructor){
 			$controllerProvider.register(name, constructor);
@@ -58,7 +58,8 @@
 			.state('login', {
 				url: "/login",
 				templateUrl: viewsPrefix + "login.html",
-				controller:'LoginCtrl'
+				controller:'LoginCtrl',
+				controllerAs: 'controller'
 			})
 			.state('suppliers',{
 		        url:'/suppliers',
@@ -120,8 +121,9 @@
 			        templateUrl: viewsPrefix + 'product/product-edit.html',
 			        controller:'ProductEditController'
 		    })
+		    $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 	})
-	.run(['$rootScope', '$location', 'LoginService', 'AlertService', function($rootScope, $location, LoginService, AlertService) {
+	/*.run(['$rootScope', '$location', 'LoginService', 'AlertService', function($rootScope, $location, LoginService, AlertService) {
 
     $rootScope.user = null;
 
@@ -158,7 +160,7 @@
                 });
         }
     });
-}])
+}])*/
 	.directive('updateTitle', ['$rootScope', '$timeout',
 		function($rootScope, $timeout) {
 			return {
