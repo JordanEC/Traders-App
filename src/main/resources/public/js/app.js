@@ -58,7 +58,7 @@
 			.state('login', {
 				url: "/login",
 				templateUrl: viewsPrefix + "login.html",
-				controller:'Navigation'
+				controller:'LoginCtrl'
 			})
 			.state('suppliers',{
 		        url:'/suppliers',
@@ -121,6 +121,44 @@
 			        controller:'ProductEditController'
 		    })
 	})
+	.run(['$rootScope', '$location', 'LoginService', 'AlertService', function($rootScope, $location, LoginService, AlertService) {
+
+    $rootScope.user = null;
+
+    $rootScope.$on('$routeChangeStart', function(ev, next, curr) {
+        AlertService.reset();
+
+        if (next.$$route) {
+            if (!curr) { //on page reload
+                authenticateOnServer(LoginService, $rootScope, $location);
+            } else {
+                if ($rootScope.user) {
+                    if (next.$$route.originalPath == '/login') {
+                        $location.path('/')
+                    }
+                } else {
+                    $location.path('/login');
+                }
+            }
+        }
+        function authenticateOnServer(LoginService, $rootScope, $location) {
+            LoginService.login().then(
+                function(user) {
+                    if (user) {
+                        $rootScope.user = user;
+                        console.log('authenticated: ', user);
+                    } else {
+                        $rootScope.user = null
+                        $location.path('/login')
+                    }
+                },
+                function() {
+                    $rootScope.user = null
+                    $location.path('/login')
+                });
+        }
+    });
+}])
 	.directive('updateTitle', ['$rootScope', '$timeout',
 		function($rootScope, $timeout) {
 			return {

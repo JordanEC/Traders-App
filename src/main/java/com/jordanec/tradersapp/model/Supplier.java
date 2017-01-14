@@ -88,9 +88,9 @@ public class Supplier extends BaseModel implements java.io.Serializable{
 		return products;
 	}
 
-/*	@JoinTable(name = "Supplier_Products", catalog = "tradersappdb_v1", joinColumns = {
+	@JoinTable(name = "Supplier_Products", catalog = "tradersappdb_v1", joinColumns = {
 			@JoinColumn(name = "id", nullable = true, updatable = true) }, inverseJoinColumns = {
-					@JoinColumn(name = "id", nullable = true, updatable = true) })*/
+					@JoinColumn(name = "id", nullable = true, updatable = true) })
 	public void setProducts(Collection<Product> products) {
 		this.products = products;
 	}

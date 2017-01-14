@@ -1,17 +1,35 @@
 angular.module('app.controllers', [])
-.controller('Navigation', function($rootScope, $scope, $http, $location) {
+.controller('LoginCtrl', ['$scope', '$rootScope', '$location', 'LoginService', 'AlertService', function($scope, $rootScope, $location, LoginService, AlertService) {
+
+    $scope.credentials = {
+        username: '',
+        password: ''
+    };
+
+    $scope.login = function() {
+        LoginService.login($scope.credentials).then(
+            function(user) {
+                $rootScope.user = user;
+                $location.path('/')
+                console.log('authenticated: ', user);
+            },
+            function(error) {
+                $rootScope.user = null;
+                AlertService.error(error.data.message);
+                console.error(error.data);
+            });
+    }
+
+}])
+/*.controller('Navigation', function($rootScope, $scope, $http, $location) {
 	$scope.login = function(){
 		$http.post('/login', $scope.authenticationUser).
 	    success(function(data, status, headers, config) {
-	        // this callback will be called asynchronously
-	        // when the response is available
 	        console.log(data);
 	      }).
 	      error(function(data, status, headers, config) {
-	        // called asynchronously if an error occurs
-	        // or server returns response with an error status.
 	      });
-	};
+	};*/
 	
 	/*
 		  var authenticate = function(credentials, callback) {
@@ -46,10 +64,11 @@ angular.module('app.controllers', [])
 		          $scope.error = true;
 		        }
 		      });
-		  };*/
-})
+		  };
+})*/
 .controller('SupplierListController', function($scope, $state, popupService, $window, Supplier) {
 	$scope.suppliers = Supplier.query(); //fetch all suppliers. Issues a GET to /api/vi/suppliers
+	//console.log(Supplier.query());
 	$scope.deleteSupplier = function(supplier) { // Delete a Supplier. Issues a DELETE to /api/v1/suppliers/:id
 		if (popupService.showPopup('Really delete this?')) {
 			supplier.$delete(function() {
@@ -58,6 +77,7 @@ angular.module('app.controllers', [])
 			});
 	    }
 	};
+
 })
 .controller('SupplierViewController', function($scope, $stateParams, Supplier) {
 	$scope.supplier = Supplier.get({ id: $stateParams.id }); //Get a single supplier.Issues a GET to /api/v1/suppliers/:id

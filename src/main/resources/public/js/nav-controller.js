@@ -24,7 +24,11 @@ angular.module('navController', [])
 			},
 			{
 				name: 'Login',
-				url: '#/login'
+				url: '/login'		//#/login
+			},
+			{
+				name: 'Logout',
+				url: '/logout'		//#/login
 			}
 		]
 	});
