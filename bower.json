@@ -1,7 +1,8 @@
 {
   "name": "ng-tradersapp",
   "dependencies": {
-    "angularMultipleSelect": "angular-multiple-select#^1.1.2"
+    "angularMultipleSelect": "angular-multiple-select#^1.1.2",
+    "angular-local-storage": "^0.5.2"
   },
   "homepage": "https://github.com/JordanEC/Traders-App",
   "authors": [

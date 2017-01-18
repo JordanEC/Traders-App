@@ -1,0 +1,47 @@
+<div class="form-group">
+    <label for="username" class="col-sm-2 control-label">Username</label>
+    <div class="col-sm-10">
+        <input required type="text" ng-model="user.username" class="form-control" id="username" placeholder="Username"/>
+    </div>
+</div>
+<div class="form-group">
+    <label for="email" class="col-sm-2 control-label">Email</label>
+    <div class="col-sm-10">
+        <input required type="text" ng-model="user.email" class="form-control" id="email" placeholder="Email"/>
+    </div>
+</div>
+<div ng-show="show" >
+<div 
+	class="form-group" ng-class="{ 'has-error': user.password.$invalid && user.password.$dirty }">
+	<label for="password" class="col-sm-2 control-label">Password</label> 
+	<div class="col-sm-10">
+		<input ng-required="required" type="password" class="form-control" id="password" ng-model="user.password"	
+			placeholder="Password" name="password"/>
+	</div>
+</div>
+
+<div 
+	class="form-group" ng-class="{ 'has-error': user.confirmpassword.$invalid && user.confirmpassword.$dirty }">
+	<label for="confirmpassword" class="col-sm-2 control-label">Confirm Password</label> 
+	<div class="col-sm-10">
+		<input ng-required="required" type="password" name="confirmpassword" class="form-control" 
+			id="confirmpassword"ng-model="user.confirmpassword" placeholder="Password"/>
+	</div>
+</div>
+
+<div class="col-sm-offset-2 col-sm-10 alert alert-warning margin-top-5" ng-show="user.confirmpassword != user.password ">Password Not Matching </div>
+
+</div>
+<div ng-show="user" class="form-group">
+	<label for="user-role" class="col-sm-2 control-label">User Role</label>
+	<div class="col-sm-10 dropdown">
+		<select class="form-control" id="user-role" ng-model="user.role" 
+			ng-options="role for role in roles">
+		</select>
+	</div>
+</div>
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <input type="submit" class="btn btn-primary" value="Save"/>
+    </div>
+</div>

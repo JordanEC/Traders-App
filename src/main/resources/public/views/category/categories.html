@@ -1,5 +1,5 @@
 <div class="container pad-top">
-  <a ui-sref="newCategory" class="btn-primary btn-lg nodecoration">Add New Category</a>
+  <a ng-show="user" ui-sref="newCategory" class="btn-primary btn-lg nodecoration">Add New Category</a>
   <table class="table entitytable">
       <tr>
           <td><h3>All Categories</h3></td>
@@ -19,4 +19,5 @@
           </td>
       </tr>
   </table>
+  <div class="alert alert-danger margin-top-2" ng-show="message">{{message}}</div>
 </div>

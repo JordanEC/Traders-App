@@ -10,8 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.jordanec.tradersapp.model.User;
 
 //@Repository
-//public interface UserRepository extends JpaRepository<User, Long> {
-public interface UserRepository extends PagingAndSortingRepository<User, Long> {
-	Optional<User> findByEmail(String email);
-	Optional<User> findByUsername(String username);
+public interface UserRepository extends JpaRepository<User, Long> {
+	public User findOneByEmail(String email);
+	public User findOneByUsername(String username);
 }

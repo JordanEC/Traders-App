@@ -1,5 +1,5 @@
 (function() {
-	var app = angular.module('app', ['ui.router', 'navController', 'ngAnimate', 'ui.bootstrap', 'ngResource', 'app.controllers', 'app.services', 'multipleSelect'])
+	var app = angular.module('app', ['ui.router', 'navController', 'ngAnimate', 'ui.bootstrap', 'ngResource', 'app.controllers', 'app.services', 'multipleSelect', 'LocalStorageModule'])
 
 	// define for requirejs loaded modules
 	define('app', [], function() { return app; });
@@ -23,8 +23,11 @@
 			}
 		}
 	}
-
-	app.config(function($stateProvider, $urlRouterProvider, $controllerProvider, $httpProvider){
+	app.config(function($stateProvider, $urlRouterProvider, $controllerProvider, $httpProvider, localStorageServiceProvider){
+		localStorageServiceProvider.setPrefix('TradersAppV2');
+		$httpProvider.interceptors.push('AuthInterceptor');
+		$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+		
 		var origController = app.controller
 		app.controller = function (name, constructor){
 			$controllerProvider.register(name, constructor);
@@ -33,18 +36,8 @@
 
 		var viewsPrefix = 'views/';
 
-		// For any unmatched url, send to /
 		$urlRouterProvider
-		/*.when('/login', {					//
-			templateUrl : viewsPrefix + 'login.html',
-			controller : 'navigation'
-		})		*/							//
-		//.when(viewsPrefix + '/login', ['$match', '$stateParams', function ($match, $stateParams) {
-		    /*if ($state.$current.navigable != state || !equalForKeys($match, $stateParams)) {
-		        $state.transitionTo(state, $match, false);
-		    }
-		}]);*/
-		.otherwise("/")
+			.otherwise("/")
 
 		$stateProvider
 			// you can set this to no template if you just want to use the html in the page
@@ -58,9 +51,33 @@
 			.state('login', {
 				url: "/login",
 				templateUrl: viewsPrefix + "login.html",
-				controller:'LoginCtrl',
-				controllerAs: 'controller'
+				controller: 'nav'
 			})
+			.state('register', {
+				url: "/register",
+				templateUrl: viewsPrefix + "register.html",
+				controller: 'RegisterController'
+			})
+			.state('users',{
+		        url:'/users',
+		        templateUrl: viewsPrefix + 'user/users.html',
+		        controller:'UserListController'
+		    })
+		    .state('viewUser',{
+			       url:'/users/:id/view',
+			       templateUrl: viewsPrefix + 'user/user-view.html',
+			       controller:'UserViewController'
+		    })
+		    .state('newUser',{
+			        url:'/users/new',
+			        templateUrl: viewsPrefix + 'user/user-add.html',
+			        controller:'UserCreateController'
+		    })
+		    .state('editUser',{
+			        url:'/users/:id/edit',
+			        templateUrl: viewsPrefix + 'user/user-edit.html',
+			        controller:'UserEditController'
+		    })
 			.state('suppliers',{
 		        url:'/suppliers',
 		        templateUrl: viewsPrefix + 'supplier/suppliers.html',
@@ -121,46 +138,7 @@
 			        templateUrl: viewsPrefix + 'product/product-edit.html',
 			        controller:'ProductEditController'
 		    })
-		    $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 	})
-	/*.run(['$rootScope', '$location', 'LoginService', 'AlertService', function($rootScope, $location, LoginService, AlertService) {
-
-    $rootScope.user = null;
-
-    $rootScope.$on('$routeChangeStart', function(ev, next, curr) {
-        AlertService.reset();
-
-        if (next.$$route) {
-            if (!curr) { //on page reload
-                authenticateOnServer(LoginService, $rootScope, $location);
-            } else {
-                if ($rootScope.user) {
-                    if (next.$$route.originalPath == '/login') {
-                        $location.path('/')
-                    }
-                } else {
-                    $location.path('/login');
-                }
-            }
-        }
-        function authenticateOnServer(LoginService, $rootScope, $location) {
-            LoginService.login().then(
-                function(user) {
-                    if (user) {
-                        $rootScope.user = user;
-                        console.log('authenticated: ', user);
-                    } else {
-                        $rootScope.user = null
-                        $location.path('/login')
-                    }
-                },
-                function() {
-                    $rootScope.user = null
-                    $location.path('/login')
-                });
-        }
-    });
-}])*/
 	.directive('updateTitle', ['$rootScope', '$timeout',
 		function($rootScope, $timeout) {
 			return {

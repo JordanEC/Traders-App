@@ -1,6 +1,21 @@
 body {
   padding-top: 20px;
 }
+.auth{
+	color: gray;
+	text-decoration:none; 
+	font-weight: 700;
+}
+.auth label{
+	padding-top: 15px;
+	padding-left:10px;
+}
+.auth:hover{
+	color: white;
+}
+.auth label:hover{
+	color: white;
+}
 .starter-template {
   padding: 40px 15px;
   text-align: center;

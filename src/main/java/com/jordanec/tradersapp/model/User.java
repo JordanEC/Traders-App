@@ -18,6 +18,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
@@ -29,22 +31,24 @@ public class User extends BaseModel implements Serializable, UserDetails  {
 	public static enum Role {
 		ROLE_ADMIN, ROLE_USER
 	}
+	@Column(unique=true, nullable = false)
 	private String username;
     @Column(unique=true, nullable = false)
     private String email;
+    @JsonProperty(access=Access.WRITE_ONLY)
     private String password;
 	private boolean enabled = true;
 	@Enumerated(EnumType.STRING)
-	@Column(updatable = false)
-	private Role role;
+	private Role role = Role.ROLE_USER;
 	
     public User() {}
     
-    public User(String username, String email, String password) {
+    public User(String username, String email, String password, Role role) {
     	super();
 		this.username = username;
 		this.email = email;
 		this.password = password;
+		this.role = role;
 	}
     
     public String getUsername() {
