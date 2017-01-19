@@ -32,3 +32,26 @@ This version includes a REST API with all CRUD operations over entities Supplier
 - Browse through users registered in the app.
 - API require authentication to get data.
 - Only admin users can add users and edit his role but registration is open.
+
+
+**App demo:** [tradersapp-jordanec.herokuapp.com](https://tradersapp-jordanec.herokuapp.com/)
+
+![alt tag](src/main/resources/public/images/app-screenshots/home.jpg?raw=true)
+
+![alt tag](src/main/resources/public/images/app-screenshots/not logged in.jpg?raw=true)
+
+![alt tag](src/main/resources/public/images/app-screenshots/registration.jpg?raw=true)
+
+![alt tag](src/main/resources/public/images/app-screenshots/log in.jpg?raw=true)
+
+![alt tag](src/main/resources/public/images/app-screenshots/users.jpg?raw=true)
+
+![alt tag](src/main/resources/public/images/app-screenshots/products.jpg?raw=true)
+
+![alt tag](src/main/resources/public/images/app-screenshots/product.jpg?raw=true)
+
+![alt tag](src/main/resources/public/images/app-screenshots/product add.jpg?raw=true)
+
+![alt tag](src/main/resources/public/images/app-screenshots/product edit.jpg?raw=true)
+
+
