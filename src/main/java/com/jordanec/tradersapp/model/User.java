@@ -23,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
-@Table(name = "\"User\"", catalog="tradersappdb_v2")
+@Table(name = "\"User\"")
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id",scope=User.class)
 public class User extends BaseModel implements Serializable, UserDetails  {
 	@JsonIgnore

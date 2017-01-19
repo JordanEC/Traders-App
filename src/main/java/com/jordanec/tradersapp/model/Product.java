@@ -20,7 +20,7 @@ import com.jordanec.tradersapp.model.Supplier;
  */
 @Entity
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id",scope=Product.class)
-@Table(name="Product", catalog="tradersappdb_v2")
+@Table(name="Product")
 public class Product extends BaseModel implements java.io.Serializable{
 	@JsonIgnore
 	private static final long serialVersionUID = 2723572977273902717L;

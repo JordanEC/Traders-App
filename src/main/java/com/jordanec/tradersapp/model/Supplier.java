@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
  */
 @Entity
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id",scope=Supplier.class)
-@Table(name="Supplier", catalog="tradersappdb_v2")
+@Table(name="Supplier")
 public class Supplier extends BaseModel implements java.io.Serializable{
 	@JsonIgnore
 	private static final long serialVersionUID = 6414688052317334163L;

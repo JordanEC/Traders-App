@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
  */
 @Entity
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id",scope=Category.class)
-@Table(name="Category", catalog="tradersappdb_v2")
+@Table(name="Category")
 public class Category extends BaseModel implements java.io.Serializable{
 	@JsonIgnore
 	private static final long serialVersionUID = -7464018122626100689L;
