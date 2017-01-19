@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +16,7 @@ import com.jordanec.tradersapp.repository.CategoryRepository;
 
 
 @RestController
-@RequestMapping("api/v1/")
+@RequestMapping("api/v2/")
 public class CategoryController {
 
     @Autowired

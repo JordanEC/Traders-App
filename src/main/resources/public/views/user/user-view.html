@@ -1,0 +1,23 @@
+<div class="container pad-top">
+  <table class="table entitytable">
+      <tr>
+          <td><h3>Details for {{user.username}}</h3></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>Username</td>
+          <td>{{user.username}}</td>
+      </tr>
+      <tr>
+          <td>Email</td>
+          <td>{{user.email}}</td>
+      </tr>
+      <tr>
+          <td>Role</td>
+          <td>{{user.role}}</td>
+      </tr>      
+  </table>
+  <div class="col-xs-offset-5 col-xs-2">
+      <a class="btn btn-primary" ui-sref="editUser({id:user.id})">Edit</a>
+  </div>
+</div>

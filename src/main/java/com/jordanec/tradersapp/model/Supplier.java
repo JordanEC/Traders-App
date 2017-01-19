@@ -19,54 +19,37 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
  *
  */
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id",scope=Supplier.class)
-@Table(name="Supplier", catalog="tradersappdb_v1")
-public class Supplier implements java.io.Serializable{
-	/**
-	 * 
-	 */
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id",scope=Supplier.class)
+@Table(name="Supplier", catalog="tradersappdb_v2")
+public class Supplier extends BaseModel implements java.io.Serializable{
 	@JsonIgnore
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id;
-	String name;
-	String company;
-	String address;
-	Integer phone;
-	
+	private static final long serialVersionUID = 6414688052317334163L;
+	private String name;
+	private String company;
+	private String address;
+	private Integer phone;
 	@ManyToMany(mappedBy="suppliers",fetch=FetchType.EAGER)
 	//@JsonBackReference
 	@JsonIgnore
-	Collection<Product> products;
+	private Collection<Product> products;
 	
 	public Supplier() {	}
 	
-	public Supplier(Long id, String name, String company, String address, Integer phone) {
+	public Supplier(String name, String company, String address, Integer phone) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.company = company;
 		this.address = address;
 		this.phone = phone;
 	}
 
-	public Supplier(Long id, String name, String company, String address, Integer phone, Collection<Product> products) {
+	public Supplier(String name, String company, String address, Integer phone, Collection<Product> products) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.company = company;
 		this.address = address;
 		this.phone = phone;
 		this.products = products;
-	}
-
-	public Long getId() {
-		return id;
-	}
-	
-	public void setId(Long id) {
-		this.id = id;
 	}
 	
 	public String getName() {

@@ -1,4 +1,9 @@
 /*POSTGRES*/
+/*admin: admin, user:user*/
+INSERT INTO "user"(id, email, enabled, password, role, username) VALUES 
+(1,'admin@jordanec.com', TRUE, '$2a$10$0sDyWkFXQj7PQVXsjijg6O4O2clhfyjpvSwmouaCgBUypJTqKsipG','ROLE_ADMIN', 'admin'),
+(2,'user@jordanec.com',TRUE,'$2a$10$oj9OJwL6ww.ADlG4wefYbern8k0AJSbKplBkzdRQOCRDhDzULdxMK','ROLE_USER','user');
+
 INSERT INTO supplier(id, address, company, name, phone) VALUES 
 (1,'San Rafael Arriba','AMSO','Juan Vargas',88997744),
 (2,'Curridabat','PPLU','Carlos Mora',65472136),

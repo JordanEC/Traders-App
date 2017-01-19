@@ -1,5 +1,5 @@
 (function() {
-	var app = angular.module('app', ['ui.router', 'navController', 'ngAnimate', 'ui.bootstrap', 'ngResource', 'app.controllers', 'app.services', 'multipleSelect'])
+	var app = angular.module('app', ['ui.router', 'navController', 'ngAnimate', 'ui.bootstrap', 'ngResource', 'app.controllers', 'app.services', 'multipleSelect', 'LocalStorageModule'])
 
 	// define for requirejs loaded modules
 	define('app', [], function() { return app; });
@@ -23,8 +23,11 @@
 			}
 		}
 	}
-
-	app.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
+	app.config(function($stateProvider, $urlRouterProvider, $controllerProvider, $httpProvider, localStorageServiceProvider){
+		localStorageServiceProvider.setPrefix('TradersAppV2');
+		$httpProvider.interceptors.push('AuthInterceptor');
+		$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+		
 		var origController = app.controller
 		app.controller = function (name, constructor){
 			$controllerProvider.register(name, constructor);
@@ -33,8 +36,8 @@
 
 		var viewsPrefix = 'views/';
 
-		// For any unmatched url, send to /
-		$urlRouterProvider.otherwise("/")
+		$urlRouterProvider
+			.otherwise("/")
 
 		$stateProvider
 			// you can set this to no template if you just want to use the html in the page
@@ -45,6 +48,36 @@
 					pageTitle: 'Home'
 				}
 			})
+			.state('login', {
+				url: "/login",
+				templateUrl: viewsPrefix + "login.html",
+				controller: 'nav'
+			})
+			.state('register', {
+				url: "/register",
+				templateUrl: viewsPrefix + "register.html",
+				controller: 'RegisterController'
+			})
+			.state('users',{
+		        url:'/users',
+		        templateUrl: viewsPrefix + 'user/users.html',
+		        controller:'UserListController'
+		    })
+		    .state('viewUser',{
+			       url:'/users/:id/view',
+			       templateUrl: viewsPrefix + 'user/user-view.html',
+			       controller:'UserViewController'
+		    })
+		    .state('newUser',{
+			        url:'/users/new',
+			        templateUrl: viewsPrefix + 'user/user-add.html',
+			        controller:'UserCreateController'
+		    })
+		    .state('editUser',{
+			        url:'/users/:id/edit',
+			        templateUrl: viewsPrefix + 'user/user-edit.html',
+			        controller:'UserEditController'
+		    })
 			.state('suppliers',{
 		        url:'/suppliers',
 		        templateUrl: viewsPrefix + 'supplier/suppliers.html',
@@ -64,10 +97,7 @@
 			        url:'/suppliers/:id/edit',
 			        templateUrl: viewsPrefix + 'supplier/supplier-edit.html',
 			        controller:'SupplierEditController'
-		    })
-	
-		    
-		    
+		    })	    
 			.state('categories',{
 		        url:'/categories',
 		        templateUrl: viewsPrefix + 'category/categories.html',

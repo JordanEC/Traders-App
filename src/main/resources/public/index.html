@@ -8,7 +8,7 @@
     <meta name="author" content="" />
     <link rel="icon" href="favicon.ico" />
 
-    <title>Traders app - V1</title>
+    <title>Traders App - v2</title>
 
     <!-- Bootstrap core CSS -->
     <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -67,14 +67,19 @@
             <li ng-class="{'divider': !page.name && !page.url, 'dropdown-header': page.name && !page.url, active: isUrl(page.url)}" ng-repeat="page in page.subPages" ng-include="'nav-item.html'">
             </li>
           </ul>
+		
         </script>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li ng-repeat="page in pages" ng-class="{active: isUrl(page.url)}" ng-include="'nav-item.html'">
-            </li>
+            <li ng-repeat="page in pages" ng-class="{active: isUrl(page.url)}" ng-include="'nav-item.html'"></li>
+			<li class="auth" ng-show="!user.authenticated"> <a ui-sref="login">Login</a></li>
+	        <li class="auth" ng-show="!user.authenticated"> <a ui-sref="register">Register</a></li>
+            <li class="auth" ng-show="user.authenticated"> <label>Hi, {{user.name}}!</label></li>
+            <li class="auth" ng-show="user.authenticated" ng-click="logout()"> <a ui-sref="login">Logout</a> </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
+      
     </nav>
 
     <div class="ui-view-container">
@@ -88,11 +93,10 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="bower_components/angularMultipleSelect/build/multiple-select.min.js"></script>
+    <script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
     <script src="lib/jquery/jquery.min.js"></script>
     <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="lib/assets/js/ie10-viewport-bug-workaround.js"></script>
-
   </body>
 </html>
