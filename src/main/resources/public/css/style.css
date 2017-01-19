@@ -16,6 +16,10 @@ body {
 .auth label:hover{
 	color: white;
 }
+.footer{
+	text-align: center;
+	font-size: medium;
+}
 .starter-template {
   padding: 40px 15px;
   text-align: center;

@@ -1,6 +1,7 @@
 angular.module('app.controllers', [])
 .controller('RegisterController',function($scope, $http){
 	$scope.user = {};
+	$scope.showrole = false;
 	$scope.show = true;
 	$scope.required = true;
 	$scope.roles = ['ROLE_USER', 'ROLE_ADMIN'];
@@ -18,10 +19,12 @@ angular.module('app.controllers', [])
 })
 .controller('UserListController', function($scope, $state, popupService, $window, User, AuthService) {
 	$scope.users = User.query();
-
+	$scope.cancreate = false;
 	if(!AuthService.user)
 		$scope.message = 'You are not logged in.';
-	
+	else
+		$scope.cancreate =  AuthService.user.principal.role == 'ROLE_ADMIN';
+		
 	$scope.deleteUser = function(user) {
 		if (popupService.showPopup('Really delete this?')) {
 			user.$delete(function() {
@@ -37,12 +40,14 @@ angular.module('app.controllers', [])
 })
 .controller('UserCreateController', function($scope, $state, $stateParams, User) {
 	$scope.roles = ['ROLE_USER', 'ROLE_ADMIN'];
+	$scope.showrole = true;
 	$scope.show = true;
 	$scope.required = true;
 	$scope.user = new User();
 	
 	$scope.addUser = function() {
 		$scope.user.$save(function() {
+		$scope.success = 'User created';
     	$state.go('users');
     });
   };
@@ -51,6 +56,7 @@ angular.module('app.controllers', [])
 	$scope.userid = AuthService.user.principal.id;
 	$scope.show = $state.current.name == 'editUser' && $state.params.id == $scope.userid;
 	$scope.required = $state.params.id == $scope.userid;
+	$scope.showrole = AuthService.user.principal.role == 'ROLE_ADMIN';
 	$scope.roles = ['ROLE_USER', 'ROLE_ADMIN'];
 	$scope.$state = $state;
 	$scope.updateUser = function() {

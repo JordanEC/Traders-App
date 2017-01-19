@@ -32,7 +32,7 @@
 <div class="col-sm-offset-2 col-sm-10 alert alert-warning margin-top-5" ng-show="user.confirmpassword != user.password ">Password Not Matching </div>
 
 </div>
-<div ng-show="user" class="form-group">
+<div ng-show="user && showrole" class="form-group">
 	<label for="user-role" class="col-sm-2 control-label">User Role</label>
 	<div class="col-sm-10 dropdown">
 		<select class="form-control" id="user-role" ng-model="user.role" 

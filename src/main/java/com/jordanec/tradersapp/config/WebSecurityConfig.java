@@ -1,10 +1,12 @@
 package com.jordanec.tradersapp.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,15 +15,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+
 import com.jordanec.tradersapp.service.TradersUserService;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-	//@Autowired
-	//private Environment environment;
-
 	@Autowired
 	TradersUserService tradersUserService;
 
@@ -36,15 +37,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.authorizeRequests()
 				.antMatchers("/","/register", "/login").permitAll()
-				.antMatchers("/api/v2/**").authenticated() //.fullyAuthenticated()
-				//.antMatchers("/api/v2/users").hasRole("ROLE_ADMIN") 
+				.antMatchers("/api/v2/**").authenticated()
 			.and()
 				.httpBasic()
 			.and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			.and()
-				//.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
-				.csrf().disable();
+				.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+				//.csrf().disable();
 
 	}
 	

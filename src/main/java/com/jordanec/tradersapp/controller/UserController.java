@@ -30,7 +30,6 @@ import com.jordanec.tradersapp.repository.CategoryRepository;
 import com.jordanec.tradersapp.repository.UserRepository;
 import com.jordanec.tradersapp.service.*;
 import com.jordanec.tradersapp.util.Util;
-import com.jordanec.tradersapp.viewmodels.*;
 
 @RestController
 @RequestMapping("api/v2/")
