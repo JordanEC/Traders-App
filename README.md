@@ -19,6 +19,16 @@ This version includes a REST API with all CRUD operations over entities Supplier
 * /api/v1/categories
 * /api/v1/products
 
-**Version 2 (In Development):**
+**Version 2 (Released):**
 
-User authentication to access API operations.
+- Paths:
+
+	/api/v2/suppliers	
+	/api/v2/categories
+	/api/v2/products	
+	/api/v2/users
+
+- User registration and authentication implemented.
+- Browse through users registered in the app.
+- API require authentication to get data.
+- Only admin users can add users and edit his role but registration is open.
